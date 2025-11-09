@@ -1,13 +1,23 @@
-// JS scripts placed here
-const button = document.getElementById("clickBtn");
-const stick = document.getElementById("stick");
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("launchBtn");
+  const page1 = document.getElementById("page1");
+  const page2 = document.getElementById("page2");
+  const reset = document.getElementById("resetBtn");
 
-button.addEventListener("click", () => {
-  button.style.display = "none"; // Hide button
-  stick.classList.add("fly"); // Animate stick figure
+  button.addEventListener("click", () => {
+    button.disabled = true;
+    document.body.classList.add("launching");
 
-  // Redirect after animation ends
-  setTimeout(() => {
-    window.location.href = "next.html"; // Change this to your destination
-  }, 2000);
+    // Reveal content after animation
+    setTimeout(() => {
+      page2.querySelector(".content").style.opacity = "1";
+    }, 2000);
+  });
+
+  reset.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.body.classList.remove("launching");
+    page2.querySelector(".content").style.opacity = "0";
+    button.disabled = false;
+  });
 });

@@ -1,35 +1,43 @@
 <!doctype html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Supa Fly</title>
-  <meta name="description" content="This site will serve as the hub for many sub responsive layouts">
+  <title>Bird Flight Transition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-
-  <meta name="theme-color" content="#fafafa">
 </head>
-
 <body>
-  <!-- Place your site's HTML here -->
-  <div id="container">
-    <button id="clickBtn">Click Me</button>
-    <div class="stick-figure" id="stick"></div>
+  <!-- PAGE 1: Launch pad -->
+  <div id="page1" class="page launch-page">
+    <button id="launchBtn">Launch Bird</button>
+
+    <!-- Animated Bird SVG -->
+    <svg id="bird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="80" height="80">
+      <g fill="#fff">
+        <!-- Body -->
+        <ellipse cx="32" cy="40" rx="6" ry="12"/>
+        <!-- Wings (assign classes for animation) -->
+        <path class="wing-left" d="M32 28 C20 20, 10 10, 4 4" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path class="wing-right" d="M32 28 C44 20, 54 10, 60 4" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- Tail feathers -->
+        <path d="M28 52 L32 60 L36 52" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Head -->
+        <circle cx="32" cy="20" r="4" fill="#fff"/>
+        <!-- Beak -->
+        <polygon points="32,18 34,20 32,22" fill="#fff"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- PAGE 2: Sky (hidden until animation starts) -->
+  <div id="page2" class="page sky-page">
+    <div class="content">
+      <h1>Welcome to the Sky!</h1>
+      <p>The bird has soared into the sky — enjoy your new view!</p>
+      <a href="#" id="resetBtn" class="home-btn">Back to Launch</a>
+    </div>
   </div>
 
   <script src="js/main.js"></script>
 </body>
-
 </html>

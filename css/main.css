@@ -1,64 +1,134 @@
-/* Place CSS styles here */
 body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(to top, #a0d8ef, #ffffff);
-  overflow: hidden;
-  margin: 0;
-  font-family: sans-serif;
-}
-
-#container {
-  text-align: center;
-}
-
-button {
-  padding: 12px 24px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 8px;
-  background-color: #007bff;
   color: white;
-  cursor: pointer;
-  transition: background 0.2s ease;
+  transition: transform 2s ease-in-out;
 }
 
-button:hover {
-  background-color: #0056b3;
+.launch-page {
+  background: linear-gradient(to bottom right, #046307, #0ec87b);
+  z-index: 1;
 }
 
-.stick-figure {
-  width: 2px;
-  height: 50px;
-  background-color: black;
-  position: relative;
-  margin: 20px auto;
-  opacity: 0;
+.sky-page {
+  background: linear-gradient(to top right, #3a9ff5, #87ceeb);
+  transform: translateY(100%);
+  z-index: 0;
 }
 
-.stick-figure::before {
-  content: "";
+/* Launch button */
+#launchBtn {
   position: absolute;
-  top: -20px;
-  left: -8px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: black;
+  z-index: 5;
+  padding: 16px 32px;
+  font-size: 20px;
+  background-color: #ffffff;
+  color: #046307;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
 }
 
-.fly {
-  animation: flyUp 2s ease-in forwards;
+#launchBtn:hover {
+  transform: scale(1.05);
+  background-color: #f1f1f1;
+}
+
+/* Bird */
+#bird {
+  position: absolute;
+  bottom: -120px;
+  width: 80px;
+  height: 80px;
+  opacity: 0;
+  transition: transform 2s ease-in-out, opacity 0.3s ease-in;
+  transform-origin: center center;
+}
+
+/* Wings flapping animation */
+.wing-left, .wing-right {
+  transform-origin: 32px 28px; /* pivot at base of wings */
+}
+
+/* Left wing: bigger swing */
+.wing-left {
+  animation: flap-left 0.4s infinite alternate ease-in-out;
+}
+
+/* Right wing: slightly different timing for natural feel */
+.wing-right {
+  animation: flap-right 0.45s infinite alternate ease-in-out;
+}
+
+@keyframes flap-left {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-35deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes flap-right {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(35deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+/* Sky page content */
+.content {
+  text-align: center;
+  max-width: 600px;
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.home-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 12px 24px;
+  background: #ffffff;
+  color: #005cb2;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.home-btn:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+
+/* Launch animations */
+.launching #bird {
   opacity: 1;
+  transform: translateY(-130vh);
 }
 
-@keyframes flyUp {
-  0% {
-    transform: translateY(80vh);
-  }
-  100% {
-    transform: translateY(-120vh);
-  }
+.launching .launch-page {
+  transform: translateY(-100%);
+}
+
+.launching .sky-page {
+  transform: translateY(0);
 }
